@@ -15,6 +15,11 @@ RUN apt-get update && \
     apt-get install -y docker-ce docker-ce-cli containerd.io && \
     apt-get clean
 
+# ADD TRIVY RIGHT HERE (exact location)
+RUN curl -L -o trivy.deb https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.62.1_Linux-64bit.deb && \
+    dpkg -i trivy.deb || apt-get install -f -y && \
+    rm trivy.deb
+
 # Add Jenkins user to the Docker group (create if it doesn't exist)
 RUN groupadd -f docker && \
     usermod -aG docker jenkins
