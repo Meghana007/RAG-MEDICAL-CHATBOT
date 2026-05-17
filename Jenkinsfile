@@ -28,9 +28,6 @@ pipeline {
             }
         }
 
-    }
-}
-
         stage('Build, Scan, and Push Docker Image to ECR') {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-token']]) {
@@ -74,4 +71,4 @@ pipeline {
         //     }
         // }
     }
-}   
+}  
